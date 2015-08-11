@@ -1,2 +1,3 @@
 # vulcanizer
-Accept Marathon Events and update vulcand
+
+Mind meld Marathon and vulcand

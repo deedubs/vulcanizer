@@ -1,0 +1,40 @@
+{
+  "name": "vulcanizer",
+  "version": "0.1.0",
+  "description": "Mind meld Marathon and vulcand",
+  "main": "index.js",
+  "scripts": {
+    "test": "BASE_DOMAIN=deedubs.internal mocha --compilers js:babel/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deedubs/vulcanizer.git"
+  },
+  "keywords": [
+    "mesos",
+    "marathon",
+    "vulcand"
+  ],
+  "author": "Dan Williams <dan@massive.co> (https://ma.ssive.co)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deedubs/vulcanizer/issues"
+  },
+  "homepage": "https://github.com/deedubs/vulcanizer#readme",
+  "dependencies": {
+    "babel": "^5.8.20",
+    "hapi": "^8.8.1",
+    "rejoice": "^2.0.0",
+    "to-camel-case": "^0.2.1"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "jscs": "^2.0.0",
+    "mocha": "^2.2.5"
+  },
+  "jscsConfig": {
+    "preset": "google",
+    "validateIndentation": 4,
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
+  }
+}

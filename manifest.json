@@ -1,0 +1,9 @@
+{
+    "server": {
+      "debug": { "request": ["error","log"] }
+    },
+    "connections": [{
+        "port": "8000"
+    }],
+    ".": {}
+}
