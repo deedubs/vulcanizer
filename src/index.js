@@ -1,17 +1,27 @@
 
 const pkg = require('../package.json');
-const handlers = require('./handlers');
-const Processor = require('./processor');
+const Vulcanizer = require('./vulcanizer');
 const Vulcanproxy = require('./vulcanproxy');
 
 exports.register = (server, options, ready) => {
 
-    server.expose('processor', new Processor(process.env.BASE_DOMAIN, new Vulcanproxy()));
+    let vulcanizer = new Vulcanizer(process.env.BASE_DOMAIN, new Vulcanproxy());
 
     server.route({
         method: 'POST',
         path: '/event-bus',
-        config: handlers.create
+        handler: (request, reply) => {
+
+            let payload = request.payload;
+
+            vulcanizer
+                .process(payload)
+                .then(() => {
+
+                    reply()
+                        .code(204);
+                });
+        }
     });
 
     ready();

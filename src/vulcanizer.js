@@ -1,6 +1,7 @@
+
 const camel = require('to-camel-case');
 
-class Processor {
+class Vulcanizer {
 
     constructor(domain, vulcan) {
 
@@ -10,14 +11,14 @@ class Processor {
 
     process(payload) {
 
-        let method = Processor.determineMethod(payload);
+        let method = Vulcanizer.determineMethod(payload);
 
         return this[method](payload);
     }
 
     apiPost(payload) {
 
-        let {hostname, env} = Processor.extractFqdnInfo(payload);
+        let {hostname, env} = Vulcanizer.extractFqdnInfo(payload);
         let fqdn = [hostname, env, this.domain].join('.');
 
         return Promise.all([this.vulcan.addHost(fqdn, {}),
@@ -34,7 +35,7 @@ class Processor {
 
         if (status = 'taskRunning') {
 
-            let {backend, serverId, url} = Processor.extractServerInfo(payload);
+            let {backend, serverId, url} = Vulcanizer.extractServerInfo(payload);
 
             return this
                 .vulcan
@@ -42,7 +43,7 @@ class Processor {
 
         } else if (failedStatuses.has(status)) {
 
-            let {backend, serverId} = Processor.extractServerInfo(payload);
+            let {backend, serverId} = Vulcanizer.extractServerInfo(payload);
 
             return this
                 .vulcan
@@ -80,4 +81,4 @@ class Processor {
     }
 }
 
-module.exports = Processor;
+module.exports = Vulcanizer;
